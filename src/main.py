@@ -6,6 +6,8 @@ branchStack = BranchStack()
 
 testTracker.current_context = "heyhey"
 branchStack.push(1)
+branchStack.push(2)
+branchStack.push(3)
 
 print(testTracker.current_context)
 print(branchStack.peek())

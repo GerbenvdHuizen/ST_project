@@ -14,8 +14,18 @@ class BranchStack(object):
     def pop(self):
         return self.items.pop()
 
-    def peek(self):
+    def peek_top(self):
         return self.items[len(self.items)-1]
+
+    def peek_second(self):
+        return self.items[len(self.items)-2]
 
     def size(self):
         return len(self.items)
+
+    def replace(self, item):
+        self.pop()
+        self.push(item)
+    
+    def empty_stack(self):
+        self.items = []
