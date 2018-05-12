@@ -12,6 +12,8 @@ class BranchStack(object):
         self.items.append(item)
 
     def pop(self):
+        if self.isEmpty():
+            raise EmptyStackError()
         return self.items.pop()
 
     def peek_top(self):
@@ -29,3 +31,11 @@ class BranchStack(object):
     
     def empty_stack(self):
         self.items = []
+    
+    def print_stack(self):
+        print(self.items)
+
+    
+class EmptyStackError(Exception):
+        def __init__(self):
+                super().__init__("Stack is empty: cannot pop from an empty stack!")
