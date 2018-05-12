@@ -33,6 +33,7 @@ class Branch(object):
         self._history.append(value)
     
     def update_to_next_state(self, state):
+        '''Add the latest_state to the history of the branch and update the latest_state'''
         self.add_to_history(self._latest_state)
         self.latest_state = state
 

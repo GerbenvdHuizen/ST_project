@@ -17,15 +17,18 @@ class BranchStack(object):
         return self.items.pop()
 
     def peek_top(self):
+        '''Return the top item on the stack'''
         return self.items[len(self.items)-1]
 
     def peek_second(self):
+        '''Return the second item on the stack'''
         return self.items[len(self.items)-2]
 
     def size(self):
         return len(self.items)
 
     def replace(self, item):
+        '''Replace the top item on the stack'''
         self.pop()
         self.push(item)
     
