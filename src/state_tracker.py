@@ -1,7 +1,7 @@
 
-from branch_stack import BranchStack
-from branch import Branch
-from interaction_state import InteractionState
+from state_tracking.branch_stack import BranchStack
+from state_tracking.branch import Branch 
+from state_tracking.interaction_state import InteractionState
 
 class StateTracker(object):
     '''Keeps track of all the context branches'''
@@ -57,7 +57,7 @@ class StateTracker(object):
         add a completely new branch. If the branch_stack has other branches then create a new 
         branch based on the top of the stack'''
         last_frame = {}
-        if (not self.branch_stack.isEmpty):
+        if (not self.branch_stack.isEmpty()):
             latest_state = self.get_lastest_state()
             last_frame = latest_state.frame
 
@@ -80,6 +80,9 @@ class StateTracker(object):
 
     def merge_current_branch_with_parent(self, keyList = []):
         '''Merge the top branch on the branch_stack with its parent branch'''
+        if self.branch_stack.size() < 2:
+            raise BranchStackSizeError()
+
         latest_state = self.get_lastest_state()
         parent_latest_state = self.get_parent_latest_state()
 
@@ -95,6 +98,10 @@ class StateTracker(object):
     def commit_to_branch(self, keys, keyList = []):
         '''Update the latest_state of the top branch on the branch stack by adding and updating
         frame slots based on input keys given as argument'''
+
+        if self.branch_stack.isEmpty():
+            raise BranchStackSizeError()
+
         latest_frame = self.get_lastest_state().frame
         new_frame = self.merge_dicts(latest_frame, keys, keyList)
 
@@ -109,4 +116,6 @@ class StateTracker(object):
         '''Reset the branch_stack by deleting all branches'''
         self.branch_stack.empty_stack
 
-
+class BranchStackSizeError(Exception):
+        def __init__(self):
+                super().__init__("Operation not possible because the branch stack has either 1 or 0 branches")

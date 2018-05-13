@@ -1,4 +1,4 @@
-from state_tracking.state_tracker import StateTracker
+from state_tracker import StateTracker
 from state_tracking.branch_stack import BranchStack
 from state_tracking.branch import Branch 
 from state_tracking.interaction_state import InteractionState
