@@ -1,8 +1,7 @@
-import abc
 
-from branching.branch_stack import BranchStack
-from branching.branch import Branch
-from tracking.interaction_state import InteractionState
+from branch_stack import BranchStack
+from branch import Branch
+from interaction_state import InteractionState
 
 class StateTracker(object):
     '''Keeps track of all the context branches'''
